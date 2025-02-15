@@ -1,34 +1,27 @@
 function sendMessage() {
-    let userInput = document.getElementById("user-input").value;
-    if (userInput.trim() === "") return;
+    let inputField = document.getElementById("userInput");
+    let userText = inputField.value.trim();
 
-    let chatBox = document.getElementById("chat-box");
+    if (userText === "") return;
 
-    // Add user message to chat
-    let userMessage = document.createElement("div");
-    userMessage.className = "user-message";
-    userMessage.textContent = userInput;
-    chatBox.appendChild(userMessage);
+    // Add User Message
+    addMessage(userText, "user-message");
 
-    // Simulate bot response
+    // Simulate AI typing effect
     setTimeout(() => {
-        let botMessage = document.createElement("div");
-        botMessage.className = "bot-message";
-        botMessage.textContent = getBotResponse(userInput);
-        chatBox.appendChild(botMessage);
+        addMessage("I'm still learning, Sir. Can you rephrase that?", "bot-message");
+    }, 1000);
 
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }, 500);
-
-    document.getElementById("user-input").value = "";
+    inputField.value = "";
 }
 
-// Simple bot response function (replace with AI later)
-function getBotResponse(input) {
-    let responses = {
-        "hello": "Hi there!",
-        "how are you?": "I'm just a bot, but I'm doing great!",
-        "bye": "Goodbye! Have a great day!"
-    };
-    return responses[input.toLowerCase()] || "I'm still learning. Can you rephrase that?";
-            }
+function addMessage(text, className) {
+    let messageContainer = document.getElementById("messages");
+    let messageDiv = document.createElement("div");
+    messageDiv.className = className;
+    messageDiv.textContent = text;
+    messageContainer.appendChild(messageDiv);
+
+    // Scroll to the bottom
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+}
