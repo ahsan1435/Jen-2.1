@@ -1,41 +1,34 @@
-document.getElementById("user-input").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-});
-
-async function sendMessage() {
-    let userInput = document.getElementById("user-input").value.trim();
-    if (userInput === "") return;
+function sendMessage() {
+    let userInput = document.getElementById("user-input").value;
+    if (userInput.trim() === "") return;
 
     let chatBox = document.getElementById("chat-box");
 
-    // Add User Message
+    // Add user message to chat
     let userMessage = document.createElement("div");
-    userMessage.className = "message user-message";
+    userMessage.className = "user-message";
     userMessage.textContent = userInput;
     chatBox.appendChild(userMessage);
-    document.getElementById("user-input").value = "";
 
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    // Send to Backend
-    try {
-        let response = await fetch("http://127.0.0.1:5000/chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: userInput })
-        });
-
-        let data = await response.json();
-
-        // Add AI Response
+    // Simulate bot response
+    setTimeout(() => {
         let botMessage = document.createElement("div");
-        botMessage.className = "message bot-message";
-        botMessage.textContent = data.response;
+        botMessage.className = "bot-message";
+        botMessage.textContent = getBotResponse(userInput);
         chatBox.appendChild(botMessage);
+
         chatBox.scrollTop = chatBox.scrollHeight;
-    } catch (error) {
-        console.error("Error:", error);
-    }
-      }
+    }, 500);
+
+    document.getElementById("user-input").value = "";
+}
+
+// Simple bot response function (replace with AI later)
+function getBotResponse(input) {
+    let responses = {
+        "hello": "Hi there!",
+        "how are you?": "I'm just a bot, but I'm doing great!",
+        "bye": "Goodbye! Have a great day!"
+    };
+    return responses[input.toLowerCase()] || "I'm still learning. Can you rephrase that?";
+            }
