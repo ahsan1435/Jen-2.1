@@ -1,21 +1,19 @@
-import os
-from transformers import pipeline
+import requests
 
-# Load API Key from GitHub Secrets
-HF_API_KEY = os.getenv("HF_API_KEY")
+# Hugging Face API Key
+HUGGING_FACE_API_KEY = "your_huggingface_api_key"
 
-# Load AI Model
-chatbot = pipeline("text-generation", model="microsoft/DialoGPT-medium")
+# Define the Hugging Face model endpoint
+MODEL_ENDPOINT = "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill"
 
-def chat(user_input):
-    response = chatbot(user_input, max_length=100, do_sample=True)
-    return response[0]['generated_text']
+# Function to generate AI responses
+def get_response(user_message):
+    headers = {"Authorization": f"Bearer {HUGGING_FACE_API_KEY}"}
+    payload = {"inputs": user_message}
 
-# Test Chatbot
-if __name__ == "__main__":
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() == "exit":
-            break
-        response = chat(user_input)
-        print("Bot:", response)
+    response = requests.post(MODEL_ENDPOINT, headers=headers, json=payload)
+
+    if response.status_code == 200:
+        return response.json()[0]["generated_text"]
+    else:
+        return "Sorry, I'm having trouble processing your request."
