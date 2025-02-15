@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
+    <title>Jen 2.1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-header"> Jen 2.1 </div>
-    <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-            <div class="bot-message">Hey ! what's going on?</div>
-        </div>
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Type your message...">
-            <button onclick="sendMessage()">Send</button>
+    <div class="container">
+        <header>
+            <h1>Jen 2.1</h1>
+        </header>
+        <div class="chatbox">
+            <div class="messages" id="messages">
+                <div class="bot-message">Hey! what's going on?</div>
+            </div>
+            <div class="input-box">
+                <input type="text" id="userInput" placeholder="Type your message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
