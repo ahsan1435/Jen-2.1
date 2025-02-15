@@ -4,23 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jen 2.1</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Jen 2.1</h1>
-        </header>
-        <div class="chatbox">
-            <div class="messages" id="messages">
-                <div class="bot-message">Hey! what's going on?</div>
-            </div>
-            <div class="input-box">
-                <input type="text" id="userInput" placeholder="Type your message...">
-                <button onclick="sendMessage()">Send</button>
-            </div>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+    <style>
+        body {
+            background-color: #000; /* Black Background */
+            color: #FFD700; /* Gold/Yellow Text */
+            font-family: Arial, sans-serif; /* Arial Font */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Chat Header */
+        .header {
+            font-size: 28px;
+            font-weight: bold;
+            padding: 15px;
+            background-color: #222; /* Dark Gray */
+            border-bottom: 2px solid #FFD700;
+            text-shadow: 0px 0px 10px #FFD700;
+        }
+
+        /* Chat Container */
+        .chat-container {
+            width: 90%;
+            max-width: 600px;
+            height: 500px;
+            background-color: #111; /* Almost Black */
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            margin: 20px auto;
+            padding: 10px;
+            overflow-y: auto;
+            box-shadow: 0px 0px 15px #FFD700;
+        }
+
+        /* Chat Bubbles */
+        .chat-bubble {
+            max-width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            font-size: 16px;
+            word-wrap: break-word;
+            display: inline-block;
+            box-shadow: 0px 0px 10px #FFD700;
+        }
+
+        /* User Message */
+        .user-message {
+            background-color: #FFD700;
+            color: black;
+            align-self: flex-end;
+            text-align: right;
+            border: 1px solid #FFA500; /* Slight Orange Glow */
+        }
+
+        /* Bot Message */
+        .bot-message {
+            background-color: black;
+            color: #FFD700;
+            border: 1px solid #FFD700;
+            text-align: left;
+        }
+
+        /* Input Field & Send Button */
+        .chat-input {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #FFD700;
+            background-color: black;
+            color: #
