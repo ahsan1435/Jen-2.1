@@ -82,4 +82,68 @@
             padding: 10px;
             border: 2px solid #FFD700;
             background-color: black;
-            color: #
+            color: #FFD700;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* Send Button */
+        button {
+            padding: 10px 20px;
+            background-color: #FFD700;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 10px;
+            box-shadow: 0px 0px 10px #FFD700;
+        }
+
+        button:hover {
+            background-color: #FFA500;
+            box-shadow: 0px 0px 15px #FFA500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">Jen 2.1</div>
+
+    <div class="chat-container" id="chat">
+        <div class="chat-bubble bot-message">Hello, how can I assist you?</div>
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let userInput = document.getElementById("userInput").value;
+            if (userInput.trim() === "") return;
+
+            let chat = document.getElementById("chat");
+
+            // User Message
+            let userMessage = document.createElement("div");
+            userMessage.className = "chat-bubble user-message";
+            userMessage.innerText = userInput;
+            chat.appendChild(userMessage);
+
+            // Auto Bot Response (for now)
+            let botMessage = document.createElement("div");
+            botMessage.className = "chat-bubble bot-message";
+            botMessage.innerText = "I'm still learning. Can you rephrase that?";
+            chat.appendChild(botMessage);
+
+            document.getElementById("userInput").value = ""; // Clear input
+            chat.scrollTop = chat.scrollHeight; // Scroll to bottom
+        }
+    </script>
+
+</body>
+</html>
